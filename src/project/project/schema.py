@@ -8,7 +8,8 @@ class Query(ecommerce.schema.Query,
 	graphene.ObjectType):
 	pass
 
-class Mutation(users.schema_users.Mutation, 
+class Mutation(ecommerce.schema.Mutation,
+	users.schema_users.Mutation, 
 	graphene.ObjectType):
 	pass
 
