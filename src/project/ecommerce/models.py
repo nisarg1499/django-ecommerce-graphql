@@ -11,7 +11,7 @@ class Product(models.Model):
 	product_full_desc = models.CharField(max_length=400, null=True)
 
 class OrderProduct(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	order_item = models.ForeignKey(Product, on_delete=models.CASCADE)
 	order_quantity = models.IntegerField(default = 1)
 

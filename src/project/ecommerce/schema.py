@@ -3,11 +3,15 @@ from graphene_django import DjangoObjectType
 from django.db.models import Q
 from graphene import ObjectType
 
-from .models import Product
+from .models import Product, OrderProduct
 
 class ProductType(DjangoObjectType):
 	class Meta:
 		model = Product
+
+class OrderProductType(DjangoObjectType):
+	class Meta:
+		model = OrderProduct
 
 class Query(graphene.ObjectType):
 	products = graphene.List(ProductType, product_name = graphene.String())
@@ -42,7 +46,28 @@ class AddProduct(graphene.Mutation):
 
 		return AddProduct(addProduct=product)
 
+class AddOrderInput(graphene.InputObjectType):
+	user_id = graphene.Int()
+	order_item_id = graphene.Int()
+	order_quantity = graphene.Int()
+
+class AddOrderProduct(graphene.Mutation):
+	addOrderProduct = graphene.Field(OrderProductType)
+
+	class Arguments:
+		order_data = AddOrderInput(required=True)
+
+	def mutate(self, info, order_data, **kwargs):
+		print("hiii")
+		print(order_data)
+
+		order = OrderProduct.objects.create(**order_data)
+
+		return AddOrderProduct(addOrderProduct=order)
+
+
 class Mutation(graphene.ObjectType):
 	add_product = AddProduct.Field()
+	add_order_product = AddOrderProduct.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
