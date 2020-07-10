@@ -7,3 +7,19 @@ Backend APIs are built using Graphene client(GraphQL). Anyone can use this proje
 
 ### Note
 Documentation of APIs would be added very shortly.
+
+### Current Progress
+- Create User
+- Add products to the database
+- Add products to the cart
+- List all users
+- Query products using product name
+- Pagination
+
+### Roadmap
+- Add Authentication
+- Update Product schema in database (add every minute detail)
+- Introduce product categories
+- Add wish list for a user
+- Save orders of a user
+- Add API Documentation
