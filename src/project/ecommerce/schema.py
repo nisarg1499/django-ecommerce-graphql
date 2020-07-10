@@ -14,11 +14,21 @@ class OrderProductType(DjangoObjectType):
 		model = OrderProduct
 
 class Query(graphene.ObjectType):
-	products = graphene.List(ProductType, product_name = graphene.String())
+	products = graphene.List(ProductType, product_name = graphene.String(), first = graphene.Int(), jump = graphene.Int())
 
-	def resolve_products(self, info, product_name, **kwargs):
-		filter = (Q(product_name__icontains = product_name))
-		return Product.objects.filter(filter)
+	def resolve_products(self, info, product_name, first=None, jump=None, **kwargs):
+
+		all_products = Product.objects.all()
+		if product_name:
+			filter = (Q(product_name__icontains = product_name))
+			filtered = all_products.filter(filter)
+
+			if jump:
+				filtered = filtered[jump:]
+			if first:
+				filtered = filtered[:first]
+
+		return filtered
 
 class AddProduct(graphene.Mutation):
 	addProduct = graphene.Field(ProductType)
