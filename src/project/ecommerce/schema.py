@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from django.db.models import Q
 from graphene import ObjectType
 
-from .models import Product, OrderProduct
+from .models import Product, OrderProduct, Categories
 
 class ProductType(DjangoObjectType):
 	class Meta:
@@ -79,5 +79,15 @@ class AddOrderProduct(graphene.Mutation):
 class Mutation(graphene.ObjectType):
 	add_product = AddProduct.Field()
 	add_order_product = AddOrderProduct.Field()
+
+class CategoryType(DjangoObjectType):
+	class Meta:
+		model = Categories
+
+class Query(graphene.ObjectType):
+	categories = graphene.List(CategoryType)
+
+	def resolve_categories(self, info, **kwargs):
+		return Categories.objects.all()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

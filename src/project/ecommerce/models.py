@@ -15,3 +15,13 @@ class OrderProduct(models.Model):
 	order_item = models.ForeignKey(Product, on_delete=models.CASCADE)
 	order_quantity = models.IntegerField(default = 1)
 
+class Categories(models.Model):
+	category_name = models.CharField(max_length=50)
+	category_description = models.TextField(null=True)
+
+class Orders(models.Model):
+	order_no = models.AutoField(primary_key=True)
+	username = models.TextField()
+	order_product = models.ForeignKey(OrderProduct, on_delete=models.CASCADE)
+
+
