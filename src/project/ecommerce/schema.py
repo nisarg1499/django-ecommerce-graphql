@@ -13,11 +13,15 @@ class OrderProductType(DjangoObjectType):
 	class Meta:
 		model = OrderProduct
 
+class CategoryType(DjangoObjectType):
+	class Meta:
+		model = Categories
+
 class Query(graphene.ObjectType):
 	products = graphene.List(ProductType, product_name = graphene.String(), first = graphene.Int(), jump = graphene.Int())
+	categories = graphene.List(CategoryType)
 
 	def resolve_products(self, info, product_name, first=None, jump=None, **kwargs):
-
 		all_products = Product.objects.all()
 		if product_name:
 			filter = (Q(product_name__icontains = product_name))
@@ -29,6 +33,9 @@ class Query(graphene.ObjectType):
 				filtered = filtered[:first]
 
 		return filtered
+
+	def resolve_categories(self, info, **kwargs):
+		return Categories.objects.all()
 
 class AddProduct(graphene.Mutation):
 	addProduct = graphene.Field(ProductType)
@@ -42,6 +49,11 @@ class AddProduct(graphene.Mutation):
 		product_full_desc = graphene.String(required=True)
 
 	def mutate(self, info, product_name, product_category, product_price, product_discount_price, product_preview_desc, product_full_desc, **kwargs):
+		
+		user = info.context.user
+		if user.is_anonymous:
+			raise Exception("Not logged in!!")
+
 		product_discount_price = kwargs.get('product_discount_price', None)
 		product_preview_desc = kwargs.get('product_preview_desc', None)
 
@@ -80,14 +92,5 @@ class Mutation(graphene.ObjectType):
 	add_product = AddProduct.Field()
 	add_order_product = AddOrderProduct.Field()
 
-class CategoryType(DjangoObjectType):
-	class Meta:
-		model = Categories
-
-class Query(graphene.ObjectType):
-	categories = graphene.List(CategoryType)
-
-	def resolve_categories(self, info, **kwargs):
-		return Categories.objects.all()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
