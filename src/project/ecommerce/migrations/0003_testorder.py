@@ -6,16 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ecommerce', '0002_auto_20200625_1411'),
+        ("ecommerce", "0002_auto_20200625_1411"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TestOrder',
+            name="TestOrder",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item1', models.TextField()),
-                ('item2', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("item1", models.TextField()),
+                ("item2", models.TextField()),
             ],
         ),
     ]

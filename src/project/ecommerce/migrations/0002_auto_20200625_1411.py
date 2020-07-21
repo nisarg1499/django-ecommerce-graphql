@@ -9,52 +9,66 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('ecommerce', '0001_initial'),
+        ("ecommerce", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='product',
-            old_name='productCategory',
-            new_name='product_category',
+            model_name="product",
+            old_name="productCategory",
+            new_name="product_category",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='productFullDesc',
-            new_name='product_full_desc',
+            model_name="product",
+            old_name="productFullDesc",
+            new_name="product_full_desc",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='productId',
-            new_name='product_id',
+            model_name="product", old_name="productId", new_name="product_id",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='productName',
-            new_name='product_name',
+            model_name="product", old_name="productName", new_name="product_name",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='productPreviewDesc',
-            new_name='product_preview_desc',
+            model_name="product",
+            old_name="productPreviewDesc",
+            new_name="product_preview_desc",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='productPrice',
-            new_name='product_price',
+            model_name="product", old_name="productPrice", new_name="product_price",
         ),
         migrations.AddField(
-            model_name='product',
-            name='product_discount_price',
+            model_name="product",
+            name="product_discount_price",
             field=models.FloatField(blank=True, null=True),
         ),
         migrations.CreateModel(
-            name='OrderProduct',
+            name="OrderProduct",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order_quantity', models.IntegerField(default=1)),
-                ('order_item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ecommerce.Product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order_quantity", models.IntegerField(default=1)),
+                (
+                    "order_item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ecommerce.Product",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

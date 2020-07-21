@@ -8,16 +8,16 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ecommerce', '0003_testorder'),
+        ("ecommerce", "0003_testorder"),
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='TestOrder',
-        ),
+        migrations.DeleteModel(name="TestOrder",),
         migrations.AlterField(
-            model_name='orderproduct',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="orderproduct",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]
