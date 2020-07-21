@@ -7,24 +7,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ecommerce', '0004_auto_20200625_1950'),
+        ("ecommerce", "0004_auto_20200625_1950"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Categories',
+            name="Categories",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('category_name', models.CharField(max_length=50)),
-                ('category_description', models.TextField(null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("category_name", models.CharField(max_length=50)),
+                ("category_description", models.TextField(null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Orders',
+            name="Orders",
             fields=[
-                ('order_no', models.AutoField(primary_key=True, serialize=False)),
-                ('username', models.TextField()),
-                ('order_product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ecommerce.OrderProduct')),
+                ("order_no", models.AutoField(primary_key=True, serialize=False)),
+                ("username", models.TextField()),
+                (
+                    "order_product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ecommerce.OrderProduct",
+                    ),
+                ),
             ],
         ),
     ]
