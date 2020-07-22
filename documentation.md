@@ -36,6 +36,3 @@ Now you can run the project with this command
 ```
 python manage.py runserver
 ```
-
-## Contribution
-We are open and looking for active contributors. Contributors can join us on Discord through this [link](https://discord.gg/U2k6dwR)
