@@ -1,7 +1,6 @@
+import ecommerce.schema
 import graphene
 import graphql_jwt
-
-import ecommerce.schema
 import users.schema_users
 
 

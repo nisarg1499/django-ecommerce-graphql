@@ -76,7 +76,7 @@ Follow the following steps
 3. create user called ecomgraph with password ecomgraph using the `createuser` command of postgresql
     - **Linux** : `createuser -P`
 4. enter psql shell and grant all permissions to this user.
-    - **All OS** : ``psql`
+    - **All OS** : `psql`
 
 ```SQL
 grant all privileges on database ecommerce to ecomgraph

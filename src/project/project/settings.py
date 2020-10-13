@@ -83,7 +83,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "ecommerce",
         "USER": "ecomgraph",
-        "PASSWORD": "ecomgraph",
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "ecomgraph"),
         "HOST": "localhost",
         "PORT": "5432",
     }
