@@ -1,9 +1,9 @@
 import graphene
-from graphene_django import DjangoObjectType
 from django.db.models import Q
 from graphene import ObjectType
+from graphene_django import DjangoObjectType
 
-from .models import Product, OrderProduct, Categories
+from .models import Categories, OrderProduct, Product
 
 
 class ProductType(DjangoObjectType):
