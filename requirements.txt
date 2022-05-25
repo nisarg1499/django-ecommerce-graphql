@@ -13,7 +13,7 @@ graphql-relay==2.0.1
 pathspec==0.8.0
 promise==2.3
 psycopg2==2.8.5
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2020.1
 regex==2020.7.14
 Rx==1.6.1
